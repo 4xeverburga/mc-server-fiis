@@ -8,3 +8,4 @@ sudo systemctl enable docker
 sudo systemctl start docker
 
 
+# sst-key for awscli
