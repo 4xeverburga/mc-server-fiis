@@ -1,0 +1,15 @@
+[Unit]
+Description=Minecraft Application as a Service
+[Service]
+User=ec2-user
+#change this directory into your workspace
+#mkdir minecraft
+WorkingDirectory=/home/ec2-user/minecraft
+#path to the executable bash script which executes the jar file
+ExecStart=/bin/bash /home/ec2-user/minecraft/mc_server_start.sh
+SuccessExitStatus=143
+TimeoutStopSec=10
+Restart=on-failure
+RestartSec=5
+[Install]
+WantedBy=multi-user.target

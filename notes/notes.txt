@@ -1,0 +1,15 @@
+https://medium.com/@cedric.lemercierlaos/start-your-minecraft-server-on-amazon-web-services-aws-d35f846a2d7c
+
+https://medium.com/@pzawadz/how-to-set-up-minecraft-server-java-edition-for-free-for-12-months-on-aws-38239753cca1
+
+it broadcast from *:25565
+eula=true
+yum install -y wget
+yum install -y java-22-amazon-corretto-headless 
+
+paper-1.21-123.jar --nogui
+java -jar paper-1.21-123.jar --nogui
+sudo dpkg -i jdk-21_linux-x64_bin.deb
+sudo docker run -i 7d0547aa66ba java -jar paper-1.21-123.jar --nogui
+
+sudo docker run --name mc-server-plugins-kekeros -i -p 25565:25565 7d0547aa66ba java -jar paper-1.21-123.jar --nogui

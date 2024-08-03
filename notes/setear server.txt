@@ -1,0 +1,7 @@
+https://medium.com/@srijaanaparthy/step-by-step-guide-to-install-docker-on-amazon-linux-machine-in-aws-a690bf44b5fe
+
+https://plainenglish.io/community/how-to-deploy-a-docker-image-to-amazon-ecr-and-run-it-on-amazon-ec2-3a8445
+
+sudo docker run 
+
+sudo docker run -d -p 25565:25565 514cf83f26c4 java -jar server.jar
