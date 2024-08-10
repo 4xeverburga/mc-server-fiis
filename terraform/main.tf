@@ -1,42 +1,47 @@
-resource "aws_instance" "ec2_instance" {
-  ami                    = data.aws_ami.amazon_linux_2.id
-  instance_type          = var.instance_type
-  subnet_id              = aws_default_subnet.default_az1.id
-  vpc_security_group_ids = [aws_security_group.ec2_security_group.id]
-  key_name               = "ec2_key"
-  iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
+## Main Resources
 
+# Default vpc
+data "aws_vpc" "default_vpc" {
+  default = true
+}
+
+# Minecraft server ec2 instance
+resource "aws_instance" "minecraft_server" {
+  ami                    = "ami-0e36db3a3a535e401" # amazonlinux 2023 arm for us-east-1
+  instance_type          = var.mc_server_config["instance_type"]
+  # don't care for the availability zone yet
+  vpc_security_group_ids = [aws_security_group.ec2_security_group.id]
+  iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name # ecr policy role
+  user_data = file(var.mc_server_config["launch_server_script_loc"])
   tags = {
-    Name = "docker server"
+    Name = "Minecraft Server"
   }
 }
-resource "null_resource" "name" {
 
-  provisioner "file" {
-   source      = "~/Downloads/docker_password.txt"
-   destination = "/home/ec2-user/docker_password.txt"
+# ECR registry to backup and restore the server
+resource "aws_ecr_repository" "mc_server_backup" {
+  name = var.mc_server_config["ecr_repo_name"]
+  image_tag_mutability = "MUTABLE"
+}
 
-   }
-  # copy the dockerfile from your computer to the ec2 instance
-  provisioner "file" {
-    source      = var.dockerfile_path
-    destination = "/home/ec2-user/Dockerfile"
-  }
-
-  provisioner "file" {
-    source      = var.deployment_script_path
-    destination = "/home/ec2-user/deployment.sh"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "sudo chmod +x /home/ec2-user/deployment.sh",
-      "sh /home/ec2-user/deployment.sh",
-
+# ECR policy for the server
+resource "aws_ecr_lifecycle_policy" "mc_server_lifecycle_policy" {
+  repository = aws_ecr_repository.mc_server_backup.name
+  policy = jsonencode({
+    rules = [
+      {
+        rulePriority = 10
+        description = "Keep last 2 images"
+        selection = {
+          tagStatus = "tagged"
+          countType = "imageCountMoreThan"
+          countNumber = 2
+        }
+        action = {
+          type = "expire"
+        }
+      }
     ]
-  }
-
-  depends_on = [aws_instance.ec2_instance]
-
+  })
 }
 

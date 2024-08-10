@@ -8,4 +8,5 @@ sudo systemctl enable docker
 sudo systemctl start docker
 
 
-# sst-key for awscli
+# pulling latest image
+

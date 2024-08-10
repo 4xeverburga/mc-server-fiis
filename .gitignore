@@ -1,2 +1,42 @@
+# Vs Code
 .vscode
-.env
+
+# Local Terraform state files
+*.tfstate
+*.tfstate.*
+terraform.tfstate
+terraform.tfstate.*
+
+# Backup files
+*.tfstate.backup
+
+# Local Terraform configuration files
+.terraform/
+
+# Terraform CLI configuration files
+.terraformrc
+terraform.rc
+
+# IDE or editor specific files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Sensitive data files
+*.tfvars
+*.tfvars.json
+*.key
+*.pem
+*.env
+
+# Log files
+*.log
+
+# Other
+*.swp
+*.swo
+
+
