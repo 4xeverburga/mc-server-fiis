@@ -3,9 +3,7 @@ variable mc_server_config {
   type = map(string)
   default = {
     instance_type = "t4g.xlarge"
-    # policy used to to access ecr
-    ecr_access_policy = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser"
-    # registry of ecr
+    ecr_access_policy = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser" # policy used to to access ecr
     ecr_repo_name = "test-aws-mc-server-ecr"
     # scripts 
     launch_server_script_loc = "../scripts/config-and-launch-server.bash"

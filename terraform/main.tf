@@ -30,12 +30,12 @@ resource "aws_ecr_lifecycle_policy" "mc_server_lifecycle_policy" {
   policy = jsonencode({
     rules = [
       {
-        rulePriority = 10
+        rulePriority = 1
         description = "Keep last 2 images"
         selection = {
           tagStatus = "tagged"
-          tagPrefixList = ["v"]
-          countType = "imageCountMoreThan"
+          tagPatternList = ["*"]
+        countType = "imageCountMoreThan"
           countNumber = 2
         }
         action = {
@@ -45,4 +45,5 @@ resource "aws_ecr_lifecycle_policy" "mc_server_lifecycle_policy" {
     ]
   })
 }
+
 
