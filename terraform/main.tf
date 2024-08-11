@@ -12,7 +12,7 @@ resource "aws_instance" "minecraft_server" {
   # don't care for the availability zone yet
   vpc_security_group_ids = [aws_security_group.ec2_security_group.id]
   iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name # ecr policy role
-  user_data = file(var.mc_server_config["launch_server_script_loc"])
+  user_data = file("${path.module}/var.mc_server_config['launch_server_script_loc']")
   tags = {
     Name = "Minecraft Server"
   }
