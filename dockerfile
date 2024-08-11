@@ -1,7 +1,10 @@
 # centos is dead :C
 # NOTE: the host machine uses arm64
 # java 21 / ubuntu
-FROM --platform=linux/amd64 amd64/eclipse-temurin:latest
+ARG ARCH=amd64
+
+# java 21 / ubuntu
+FROM --platform=linux/${ARCH} ${ARCH}/eclipse-temurin:latest
 
 WORKDIR /app
 COPY minecraft-config/ ./
