@@ -1,6 +1,6 @@
 # Project
 notes
-
+*.png
 # Vs Code
 .vscode
 
