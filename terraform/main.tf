@@ -7,20 +7,24 @@ data "aws_vpc" "default_vpc" {
 
 # Minecraft server ec2 instance
 resource "aws_instance" "minecraft_server" {
-  ami                    = "ami-0e36db3a3a535e401" # amazonlinux 2023 arm for us-east-1
-  instance_type          = var.mc_server_config["instance_type"]
+  ami           = "ami-0e36db3a3a535e401" # amazonlinux 2023 arm for us-east-1
+  instance_type = var.mc_server_config["instance_type"]
   # don't care for the availability zone yet
   vpc_security_group_ids = [aws_security_group.ec2_security_group.id]
-  iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name # ecr policy role
-  user_data = file("${path.module}/var.mc_server_config['launch_server_script_loc']")
+  iam_instance_profile   = aws_iam_instance_profile.ec2_instance_profile.name # ecr policy role
+  user_data = templatefile(var.mc_server_config["launch_server_script_loc"], {
+    ECR_REPO_NAME = var.mc_server_config["ecr_repo_name"],
+    ECR_REPO_URI  = aws_ecr_repository.mc_server_backup.repository_url,
+    AWS_REGION    = var.aws_region
+  }) # adds the rendered template 
   tags = {
     Name = "Minecraft Server"
   }
 }
-
+ 
 # ECR registry to backup and restore the server
 resource "aws_ecr_repository" "mc_server_backup" {
-  name = var.mc_server_config["ecr_repo_name"]
+  name                 = var.mc_server_config["ecr_repo_name"]
   image_tag_mutability = "MUTABLE"
 }
 
@@ -31,12 +35,12 @@ resource "aws_ecr_lifecycle_policy" "mc_server_lifecycle_policy" {
     rules = [
       {
         rulePriority = 1
-        description = "Keep last 2 images"
+        description  = "Keep last 2 images"
         selection = {
-          tagStatus = "tagged"
+          tagStatus      = "tagged"
           tagPatternList = ["*"]
-        countType = "imageCountMoreThan"
-          countNumber = 2
+          countType      = "imageCountMoreThan"
+          countNumber    = 2
         }
         action = {
           type = "expire"

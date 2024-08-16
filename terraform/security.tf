@@ -17,7 +17,7 @@ resource "aws_security_group" "ec2_security_group" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = var.ssh_cidr_firewall_list # CIDRs whitelisted
-  }  
+  }
 
   egress {
     description = "Allow all outbound traffic"
@@ -51,7 +51,7 @@ resource "aws_iam_role" "ec2_role" {
 }
 
 resource "aws_iam_role_policy_attachment" "ec2_ecr_policy" {
-  role       = aws_iam_role.ec2_role.name
+  role = aws_iam_role.ec2_role.name
   # permission policy
   policy_arn = var.mc_server_config["ecr_access_policy"]
 }

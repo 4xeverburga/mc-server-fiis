@@ -1,23 +1,33 @@
 # centos is dead :C
-# NOTE: the host machine uses arm64
-# java 21 / ubuntu
+# paper server uses at least java sdk 17
+# eclipse build will give us at least java 21 / ubuntu
+# i'll use python for some scripts. If there's a dependency conflict you can blame me here
 ARG ARCH=amd64
-
-# java 21 / ubuntu
-FROM --platform=linux/${ARCH} ${ARCH}/eclipse-temurin:latest
+# stage 1
+FROM --platform=linux/${ARCH} eclipse-temurin:latest
 
 WORKDIR /app
 COPY minecraft-config/ ./
 COPY plugins/ plugins/
 
 RUN apt update
+
+# tools
 RUN apt install -y wget
+
+# mc server dependencies
 RUN apt install -y udev
+
+# NOTE: exact version is not that important
+# python from apt
+RUN apt install python-is-python3
+
 # minecraft v1.21
-# RUN wget https://piston-data.mojang.com/v1/objects/450698d1863ab5180c25d7c804ef0fe6369dd1ba/server.jar
 # v1.21 paper
-RUN wget https://api.papermc.io/v2/projects/paper/versions/1.21/builds/123/downloads/paper-1.21-123.jar
+RUN wget -O server.jar https://api.papermc.io/v2/projects/paper/versions/1.21/builds/123/downloads/paper-1.21-123.jar
 
 EXPOSE 25565
 # we will config this in the host machine
 CMD []
+
+

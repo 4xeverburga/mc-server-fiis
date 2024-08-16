@@ -7,11 +7,14 @@ sudo yum install docker -y
 sudo systemctl enable docker
 sudo systemctl start docker
 
-# BUG: no autentica, seguramente alguna(s) variables no son correctas
 # pulling latest backup image from ecr
-ECR_REPO_NAME = $(terraform output -raw ecr_repo_name)
-ECR_REPO_URI = $(terraform output -raw ecr_repo_uri) 
-AWS_REGION = $(terraform output -raw aws_region)
+# /.env
+echo "ECR_REPO_NAME=${ECR_REPO_NAME}" >> .env
+echo "ECR_REPO_URI=${ECR_REPO_URI}" >> .env
+echo "AWS_REGION=${AWS_REGION}" >> .env
+
+# set the env variables
+
 
 aws ecr get-login-password --region ${AWS_REGION} | \
 sudo docker login --username AWS --password-stdin ${ECR_REPO_URI}
