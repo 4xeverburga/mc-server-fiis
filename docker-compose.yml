@@ -6,7 +6,7 @@ services:
     volumes:
       - ./world:/world
     environment:
-      EULA: "true" # Accepts the Minecraft EULA automatically
+      EULA: "true"
     stdin_open: true
     tty: true
 
