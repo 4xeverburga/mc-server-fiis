@@ -26,25 +26,25 @@ jobs:
       run:
         working-directory: ${{ env.TF_WORKING_DIR }}
 
-  steps:
-    - name: Check out the repo
-      uses: actions/checkout@v4
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
 
-    - name: Setup Terraform with specified version on the runner
-      uses: hashicorp/setup-terraform@v2
-      with:
-        terraform_version: 1.9.3
+      - name: Setup Terraform with specified version on the runner
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.9.3
 
-    - name: Terraform init
-      id: init
-      run: terraform init -backend-config="bucket=terraform-state-logs"
+      - name: Terraform init
+        id: init
+        run: terraform init -backend-config="bucket=terraform-state-logs"
 
-    - name: Terraform plan
-      id: plan
-      run: |
-        terraform plan -input=false -out=tfplan \
-        && terraform show -no-color tfplan
+      - name: Terraform plan
+        id: plan
+        run: |
+          terraform plan -input=false -out=tfplan \
+          && terraform show -no-color tfplan
 
-    - name: Terraform Apply
-      if: ${{ github.ref == 'refs/heads/main' }}
-      run: terraform apply -auto-approve
+      - name: Terraform Apply
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: terraform apply -auto-approve
