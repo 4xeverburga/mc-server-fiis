@@ -1,0 +1,10 @@
+{
+	"_about": "time here is in minutes",
+	"playtime":
+	{
+		"invited" : 120,
+		"student" : 120,
+		"supporter" : 240,
+		"admin" : 1500
+	}
+}
