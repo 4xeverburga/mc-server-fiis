@@ -27,7 +27,7 @@ jobs:
         working-directory: ${{ env.TF_WORKING_DIR }}
 
   steps:
-    - name: Checkout the repository to the runner
+    - name: Check out the repo
       uses: actions/checkout@v4
 
     - name: Setup Terraform with specified version on the runner
