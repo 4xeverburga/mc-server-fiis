@@ -1,0 +1,61 @@
+name: Build terraform IaC
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'terraform/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'terraform/**'
+
+env:
+  TF_LOG: INFO
+  TF_WORKING_DIR: terraform/
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  # BUCKET_TF_STATE: ${{ secrets.BUCKET_TF_STATE}}
+
+
+jobs:
+  terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./terraform
+
+  steps:
+    - name: Checkout the repository to the runner
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform with specified version on the runner
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.9.3
+
+    - name: Terraform init
+      id:
+        init
+      run:
+        terraform init -backend-config="bucket=$BUCKET_TF_STATE"
+
+    - name: Terraform plan
+      id:
+        plan
+      working-directory:
+        ${{ env.TF_WORKING_DIR }}
+      run:
+        terraform plan -input=false -out=tfplan \
+        && terraform show -no-color tfplan
+
+    - name: Terraform Apply
+      if:
+        github.ref == 'refs/heads/main'
+      working-directory:
+        ${{ env.TF_WORKING_DIR }}
+      run:
+        terraform apply -auto-approve
