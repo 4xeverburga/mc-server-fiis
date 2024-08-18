@@ -9,8 +9,9 @@ FROM --platform=linux/${ARCH} eclipse-temurin:latest
 WORKDIR /app
 COPY minecraft-config/ ./
 COPY plugins/ plugins/
+COPY world/ world/
 # source of scripts for this image
-COPY scripts/container /app 
+COPY scripts/container /app
 
 RUN apt update
 

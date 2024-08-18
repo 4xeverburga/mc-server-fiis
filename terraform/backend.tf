@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "<BUCKET_NAME>"
+    bucket = "terraform-state-logs"
     key    = "terraform.tfstate"
     region = "us-east-1"
   }

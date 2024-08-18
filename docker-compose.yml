@@ -1,0 +1,15 @@
+services:
+  mc-server:
+    image: mc
+    ports:
+      - 25565:25565
+    volumes:
+      - ./world:/world
+    environment:
+      EULA: "true" # Accepts the Minecraft EULA automatically
+    stdin_open: true
+    tty: true
+
+volumes:
+  world:
+    driver: local

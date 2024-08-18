@@ -41,7 +41,7 @@ jobs:
       id:
         init
       run:
-        terraform init -backend-config="bucket=$BUCKET_TF_STATE"
+        terraform init -backend-config="bucket=terraform-state-logs"
 
     - name: Terraform plan
       id:
