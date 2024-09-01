@@ -4,10 +4,15 @@ variable "mc_server_config" {
   default = {
     instance_type     = "t2.xlarge"
     ecr_access_policy = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser" # policy used to to access ecr
+    s3_access_policy = "arn:aws:iam::aws:policy/AmazonS3FullAccess" # s3 policy
     ecr_repo_name     = "test-aws-mc-server-ecr"
     # scripts 
     launch_server_script_loc = "../scripts/config-and-launch-server.bash"
   }
+}
+
+variable "s3_backup"{
+  default = "data-for-mc-server"
 }
 
 variable "aws_region" {

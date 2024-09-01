@@ -5,7 +5,7 @@
 ## Content
 
  - [Introduction and Intended Public](#introduction)
- - [What ... and why](#section-2)
+ - [Steps](#section-2)
  - [Considerations](#section-3)
  - [System Behaviour](#section-4)
  - [Project Structure](#section-5)
@@ -14,7 +14,12 @@
 <a id="section-1"></a>
 ## Introduction
 
-## What is this exactly, and why would someone need it?
+## Steps
+
+NOTE: there might be an error when trying to authenticate docker because of the use of sudo command
+
+I am still looking how to solve it
+... maybe you will need to authenticate with sudo after all
 
 
 ## Acknowledgements

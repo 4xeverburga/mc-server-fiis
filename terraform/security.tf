@@ -56,8 +56,14 @@ resource "aws_iam_role_policy_attachment" "ec2_ecr_policy" {
   policy_arn = var.mc_server_config["ecr_access_policy"]
 }
 
-resource "aws_iam_instance_profile" "ec2_instance_profile" {
-  name = "minecratf_ec2_instance_profile"
+resource "aws_iam_role_policy_attachment" "s3_access" {
   role = aws_iam_role.ec2_role.name
+  # permission policy
+  policy_arn = var.mc_server_config["s3_access_policy"]
 }
 
+
+resource "aws_iam_instance_profile" "ec2_instance_profile" {
+  name = "minecrafta_ec2server_instance_profile"
+  role = aws_iam_role.ec2_role.name
+}

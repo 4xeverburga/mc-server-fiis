@@ -9,23 +9,14 @@ FROM --platform=linux/${ARCH} eclipse-temurin:latest
 WORKDIR /app
 COPY minecraft-config/ ./
 COPY plugins/ plugins/
-COPY world/ world/
+# world dir will be a volume
+RUN mkdir world 
 # source of scripts for this image
-COPY scripts/container /app
+COPY scripts/container/ ./scripts/
 
-RUN apt update
-
-# tools
-RUN apt install -y wget
-
-# mc server dependencies
-RUN apt install -y udev
-
-# NOTE: exact version is not that important
-# python from apt
-RUN apt install python-is-python3
-
-RUN apt install sqlite3
+RUN apt-get update
+RUN bash ./scripts/image-creation/dependencies.bash
+RUN bash ./scripts/image-creation/setup-stats-and-supervision.bash
 
 # minecraft v1.21
 # v1.21 paper

@@ -1,15 +1,13 @@
+# deploy the container with the image 'mc'
+# using -p 25565:25565 and bind /world as a volume to /app/world in the container
+# run with options -it and execute java -jar server.jar
+
 services:
-  mc-server:
+  mc:
     image: mc
     ports:
-      - 25565:25565
+      - "25565:25565"
     volumes:
-      - ./world:/world
-    environment:
-      EULA: "true"
-    stdin_open: true
+      - /world:/app/world
     tty: true
-
-volumes:
-  world:
-    driver: local
+    command: java -jar server.jar

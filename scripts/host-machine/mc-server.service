@@ -1,0 +1,17 @@
+# linux service to run $ sudo docker-compose up using systemd
+# the server does not restart
+# it runs in /home/ec2-user/
+
+[Unit]
+Description=Servidor de Minecraft
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ec2-user/
+ExecStart=/usr/local/bin/docker-compose up
+ExecStop=/usr/local/bin/docker-compose down
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
