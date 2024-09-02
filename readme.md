@@ -30,6 +30,7 @@ Null resources expect to interact with bash (from linux), so you can choose to m
 - Terraform
 - Awscli
 - An AWS account with enough permissions and credits
+  
 As for the permissions, I deployed with admin priviledges and later deactivated the keys. Not the best practice, but works weel enough.
 
 Also take note that you will need to give sudo permissions to execute the commands in the following resource:
