@@ -19,11 +19,13 @@ Hope you find this project useful, wheter it's used for learning or deploying yo
 <a id="section-2"></a>
 ## Considerations
 The dev environment is Linux, so take that into account when applying terraform. 
-![image](https://github.com/user-attachments/assets/55c6e4c5-32c3-4a5e-91f9-95f66a533562)
-<img src="https://github.com/user-attachments/assets/55c6e4c5-32c3-4a5e-91f9-95f66a533562" width="200" />
+<p align=center>
+<img src="https://github.com/user-attachments/assets/55c6e4c5-32c3-4a5e-91f9-95f66a533562" width="600"/>
+</p>
+
 Null resources expect to interact with bash (from linux), so you can choose to modify the commands or run with the linux subsystem for windows.
 
-Requirements
+### Requirements
 - Docker
 - Terraform
 - Awscli
@@ -31,11 +33,17 @@ Requirements
 As for the permissions, I deployed with admin priviledges and later deactivated the keys. Not the best practice, but works weel enough.
 
 Also take note that you will need to give sudo permissions to execute the commands in the following resource:
-![image](https://github.com/user-attachments/assets/021d053d-d9eb-4231-a9c9-d0fd25a2cad6)
+<p align=center>
+<img src="https://github.com/user-attachments/assets/021d053d-d9eb-4231-a9c9-d0fd25a2cad6" width="500"/>
+</p>
 
 <a id="section-3"></a>
 ## Structure
-![despliegue drawio](https://github.com/user-attachments/assets/128db1f0-0cf4-435b-a01a-abe55e2a1380)
+
+<p align=center>
+<img src="https://github.com/user-attachments/assets/128db1f0-0cf4-435b-a01a-abe55e2a1380" width="500"/>
+</p> 
+
 
 
 ## Steps
