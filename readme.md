@@ -20,6 +20,7 @@ Hope you find this project useful, wheter it's used for learning or deploying yo
 ## Considerations
 The dev environment is Linux, so take that into account when applying terraform. 
 ![image](https://github.com/user-attachments/assets/55c6e4c5-32c3-4a5e-91f9-95f66a533562)
+<img src="https://github.com/user-attachments/assets/55c6e4c5-32c3-4a5e-91f9-95f66a533562" width="200" />
 Null resources expect to interact with bash (from linux), so you can choose to modify the commands or run with the linux subsystem for windows.
 
 Requirements
