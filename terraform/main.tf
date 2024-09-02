@@ -94,7 +94,6 @@ resource "null_resource" "cp_data_to_s3" {
     working_dir = "../"
     command = <<EOF
       aws s3 sync ./world/ s3://${var.s3_backup}/world/
-      pwd > pwd.txt
       aws s3 cp ./docker-compose.yml s3://${var.s3_backup}
       aws s3 sync ./scripts/host-machine/ s3://${var.s3_backup}/scripts
     EOF
