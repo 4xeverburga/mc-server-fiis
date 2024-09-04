@@ -8,6 +8,6 @@ services:
     ports:
       - "25565:25565"
     volumes:
-      - /world:/app/world
+      - ./world:/app/world
     tty: true
     command: java -jar server.jar

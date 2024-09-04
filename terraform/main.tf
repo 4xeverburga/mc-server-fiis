@@ -56,7 +56,7 @@ resource "aws_ecr_lifecycle_policy" "mc_server_lifecycle_policy" {
 }
 
 # s3 backup for /world
-# add history witha lifecycle policy
+# add history with a lifecycle policy
 
 resource "aws_s3_bucket" "world_backup" {
   # force_destroy = true # NOTE: uncomment if you want to also remove world data
@@ -89,7 +89,7 @@ resource "null_resource" "docker_image_push" {
 
 resource "null_resource" "cp_data_to_s3" {
   # NOTE: you can't sync a single file without using exclude and include
-  depends_on = [aws_s3_bucket.world_backup] # i want to push to this ecr 
+  depends_on = [aws_s3_bucket.world_backup] # this is the bucket i want to sync with
   provisioner "local-exec" {
     working_dir = "../"
     command = <<EOF
