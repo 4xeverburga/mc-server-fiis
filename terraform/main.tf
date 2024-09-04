@@ -93,8 +93,8 @@ resource "null_resource" "cp_data_to_s3" {
   provisioner "local-exec" {
     working_dir = "../"
     command = <<EOF
-      aws s3 sync ./world/ s3://${var.s3_backup}/world/
-      aws s3 cp ./docker-compose.yml s3://${var.s3_backup}
+      aws s3 cp ./world/ s3://${var.s3_backup}/world/ --recursive
+      aws s3 cp ./docker-compose-ec2.yml s3://${var.s3_backup}/docker-compose.yml
       aws s3 sync ./scripts/host-machine/ s3://${var.s3_backup}/scripts
     EOF
   }
