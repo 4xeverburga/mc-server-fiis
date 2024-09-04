@@ -20,7 +20,7 @@ RUN bash ./scripts/image-creation/setup-stats-and-supervision.bash
 
 # minecraft v1.21
 # v1.21 paper
-RUN wget -O server.jar https://api.papermc.io/v2/projects/paper/versions/1.21/builds/123/downloads/paper-1.21-123.jar
+RUN wget -O server.jar https://api.papermc.io/v2/projects/paper/versions/1.21.1/builds/57/downloads/paper-1.21.1-57.jar
 
 EXPOSE 25565
 
