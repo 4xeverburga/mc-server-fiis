@@ -9,8 +9,12 @@ FROM --platform=linux/${ARCH} eclipse-temurin:latest
 WORKDIR /app
 COPY minecraft-config/ ./
 COPY plugins/ plugins/
+
 # world dir will be a volume
-RUN mkdir world 
+RUN mkdir world
+# here I will store the passky passwords file i need to bind
+RUN mkdir -p plugins/Passky 
+
 # source of scripts for this image
 COPY scripts/container/ ./scripts/
 

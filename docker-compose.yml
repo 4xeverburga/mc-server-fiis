@@ -1,13 +1,18 @@
 # deploy the container with the image 'mc'
 # using -p 25565:25565 and bind /world as a volume to /app/world in the container
+# also bind the file ./minecraft-config/pass.json to /app/world/pass.json
 # run with options -it and execute java -jar server.jar
 
+
+# TODO: complete and test bing of passky file
 services:
   mc:
-    image: mc
+    image: mc-dev
     ports:
       - "25565:25565"
     volumes:
       - ./world:/app/world
+      - ./plugins-config/Passky/passwords.yml:/app/plugins/Passky/passwords.yml
+    stdin_open: true
     tty: true
     command: java -jar server.jar
