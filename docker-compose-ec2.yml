@@ -9,5 +9,7 @@ services:
       - "25565:25565"
     volumes:
       - /home/ec2-user/world/:/app/world
+      - /home/ec2-user/plugins-config/Passky/passwords.yml:/app/plugins/Passky/passwords.yml
+    stdin_open: true
     tty: true
     command: java -jar server.jar
