@@ -54,11 +54,14 @@ NOTE: there might be an error when trying to authenticate docker because of the 
 I am still looking how to solve it
 ... maybe you will need to authenticate with sudo after all
 
-Steps to test in your local dev computer 
+Steps to test in your local dev computer
+- Optional: Copy the world/ dir with your custom world. 
+Then delete or re-tag
 1. You need to build the image mc-dev using the dockerfile
 2. Run $ docker compose up 
 
-
+Steps to deploy to aws
+1. You need to build the image and tag it as mc:latest. This will be used by a terraform null resource to push to ecr. 
 
 
 
