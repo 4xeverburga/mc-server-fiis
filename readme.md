@@ -54,6 +54,13 @@ NOTE: there might be an error when trying to authenticate docker because of the 
 I am still looking how to solve it
 ... maybe you will need to authenticate with sudo after all
 
+Steps to test in your local dev computer 
+1. You need to build the image mc-dev using the dockerfile
+2. Run $ docker compose up 
+
+
+
+
 
 ## Acknowledgements
 It's a long journey. Feel free to reach out to me via email at ever.burga.p@uni.pe
