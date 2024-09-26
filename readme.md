@@ -63,6 +63,7 @@ When you kickstart the deployment with Terraform, you can follow the initializat
 server and plugins config. files, map data, automation scripts and the docker compose file.
 
 _Note that scripts/ in S3 does not have the same content as scripts/ in your dev environment, but rather scripts/host-machine/_
+
 4. An EC2 instance is provisoned for the server, the data from S3 is synced into EC2 and the configuration script in ```scripts/config-and-launch-server.bash``` runs at boot. You will be good in reading it if you want to know more details about this step.
 After the scripts executes, you end up with some long-lasting processes:
 -  A ```mc-server.service``` systemctl service
