@@ -49,7 +49,7 @@ This is the state of the system after it is deployed.
 I find useful to group the deployment nodes into EC2, ECR and S3. So bear with me and those terms from now on.
 
 ### Communication Diagram
-You can see the messages that the componets send to each other as a still picture
+You can see the messages that the components send to each other as a still picture
 <p align=center>
 <img src="https://github.com/user-attachments/assets/585d9cd5-ce75-44d7-973f-e67c02452b63" width="800"/>
 </p> 
