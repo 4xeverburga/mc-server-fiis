@@ -18,7 +18,7 @@ Hope you find this project useful, wheter it's used for learning or deploying yo
 
 <a id="section-2"></a>
 ## Considerations
-The dev environment is Linux, so take that into account when applying terraform. 
+The dev environment is Linux, so take that into account when applying the commands. 
 <p align=center>
 <img src="https://github.com/user-attachments/assets/55c6e4c5-32c3-4a5e-91f9-95f66a533562" width="600"/>
 </p>
@@ -30,8 +30,9 @@ Null resources expect to interact with bash (from linux), so you can choose to m
 - Terraform
 - Awscli
 - An AWS account with enough permissions and credits
+- A Linux system to run the commands and follow along.
   
-As for the permissions, I deployed with admin priviledges and later deactivated the keys. Not the best practice, but works weel enough.
+As for the permissions, I deployed with admin priviledges and later deactivated the keys. Not the best practice, but works well enough.
 
 Also take note that you will need to give sudo permissions to execute the commands in the following resource:
 <p align=center>
@@ -49,7 +50,9 @@ This is the state of the system after it is deployed.
 I find useful to group the deployment nodes into EC2, ECR and S3. So bear with me and those terms from now on.
 
 ### Communication Diagram
-You can see the messages that the components send to each other as a still picture
+You can see the messages that the components send to each other as a still picture.
+
+I want to note that the two bucket icons are actually the same bucket, but only ```world/```  recieves backup
 <p align=center>
 <img src="https://github.com/user-attachments/assets/585d9cd5-ce75-44d7-973f-e67c02452b63" width="800"/>
 </p> 
