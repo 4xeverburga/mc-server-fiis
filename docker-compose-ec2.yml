@@ -10,6 +10,8 @@ services:
     volumes:
       - /home/ec2-user/world/:/app/world
       - /home/ec2-user/plugins-config/Passky/passwords.yml:/app/plugins/Passky/passwords.yml
+      - /home/ec2-user/plugins-config/WorldGuard/:/app/plugins/WorldGuard/
+      - /home/ec2-user/plugins-config/WorldEdit/:/app/plugins/WorldEdit/
     stdin_open: true
     tty: true
     command: java -jar server.jar
