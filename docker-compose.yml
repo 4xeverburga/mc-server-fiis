@@ -13,6 +13,8 @@ services:
     volumes:
       - ./world:/app/world
       - ./plugins-config/Passky/passwords.yml:/app/plugins/Passky/passwords.yml
+      - ./plugins-config/WorldGuard/:/app/plugins/WorldGuard/
+      - ./plugins-config/WorldEdit/:/app/plugins/WorldEdit/
     stdin_open: true
     tty: true
     command: java -jar server.jar
