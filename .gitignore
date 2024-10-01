@@ -1,3 +1,5 @@
+# Mc Plugins
+*.archive-unpack/
 # Project
 world/*
 world-original
