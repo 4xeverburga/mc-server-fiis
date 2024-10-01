@@ -73,6 +73,7 @@ After the scripts executes, you end up with some long-lasting processes:
 <a id="section-4"></a>
 ## Steps
 
+Execute ```clean.sh``` before trying terraform.
 
 ### Test in your dev computer
 - Optional: Copy the content of your minecraft map into the world dir. This way the server will load with your custom map.
